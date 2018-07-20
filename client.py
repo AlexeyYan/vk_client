@@ -27,15 +27,15 @@ if vk_token != None and vk_token != '':
  session=vk.Session(vk_token)
  api = vk.API(session)
  r=api.account.getProfileInfo(v='5.80')
-  name=r['first_name']+ '_' + r['last_name']
- f=open(name+'.txt','w')
+ f_name=r['first_name']+ '_' + r['last_name']
+ f=open(f_name+'.txt','w')
 
  city='City: '+r['city']['title']
  country='Country: '+r['country']['title']
  phone='Phone: '+r['phone']
  home_town='Home town: '+r['home_town']
- f.write('Account info\n-------------------------\n' + 'Name: ' + name + '\n' + country + ' | ' + city + ' | ' + home_town + '\n' + phone + '\n-------------------------\n')
- f.close
+ f.write('Account info\n-------------------------\n' + 'Name: ' + f_name + '\n' + country + ' | ' + city + ' | ' + home_town + '\n' + phone + '\n-------------------------\n')
+ f.close()
  print('OK')
 
  while True:
@@ -46,7 +46,7 @@ if vk_token != None and vk_token != '':
      print('5 - delete accpunt')
      key=input('> ')
      if key=='1':
-        copyFriends(vk_token)
+        copyFriends(api, f_name)
      elif key=='2':
         list_of_Conversations(vk_token)
      elif key=='3':
